@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="header">
+       <div class="text-logo">
+            <h1 class="logo">Характеристики вашего ПК</h1>
+       </div>
+    <div class="links-logo">
+        <ul>
+            <li><a href="#">Об авторе</a></li>
+        </ul>
+    </div>
+    </div>
+    <div class="main-content">
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Железо</th>
+                    <th>Информация</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for i in range(0, 2) %}
+                        <td>
+                            {{ sysconf[0][i] }}
+                        </td>
+                    {% endfor %}
+
+                        <td>
+                            {% for dict in sysconf[0][2].keys() %}
+                            <p>{{ dict }}  {{ sysconf[0][2].get(dict) }}</p>
+                            {% endfor %}
+                        </td>
+                </tr>
+                {% for i in range(0, sysconf[1]|length - 1, 2) %}
+                <tr>
+                        <td>
+                            {{ sysconf[1][0] }}
+                        </td>
+
+                        <td>
+                        {{ sysconf[1][i + 1] }}
+                        </td>
+
+                        <td>
+                            {% for dict in sysconf[1][i + 2].keys() %}
+                            <p>{{ dict }}  {{ sysconf[1][i + 2].get(dict) }} (Гб)</p>
+                            {% endfor %}
+                        </td>
+
+                </tr>
+                {% endfor %}
+                <tr>
+                        <td>
+                            {{ sysconf[2][0] }}
+                        </td>
+                        <td>
+                            Производитель: {{ sysconf[2][1] }}
+                        </td>
+                        <td>
+                            {% for dict in sysconf[2][2].keys() %}
+                            <p>{{ dict }}  {{ sysconf[2][2].get(dict) }}</p>
+                            {% endfor %}
+                        </td>
+
+                </tr>
+                <tr>
+                        {% for i in range(0, 2) %}
+                        <td>
+                            {{ sysconf[3][i] }}
+                        </td>
+                        {% endfor %}
+                        <td>
+                            {% for dict in sysconf[3][2].keys() %}
+                            <p>{{ dict }}  {{ sysconf[3][2].get(dict) }}</p>
+                            {% endfor %}
+                        </td>
+
+
+
+                </tr>
+                <tr>
+                        {% for i in range(0, 2) %}
+                        <td>
+                            {{ sysconf[4][i] }}
+                        </td>
+                        {% endfor %}
+                        <td>
+                            {% for dict in sysconf[4][2].keys() %}
+                            <p>{{ dict }}  {{ sysconf[4][2].get(dict) }}</p>
+                            {% endfor %}
+                        </td>
+
+
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="footer">
+        <div class="text-footer">
+            <h1>Контактная информация</h1>
+            <ul>
+                <a href="#"><li>VK</li></a>
+                <a href="#"><li>TELEGRAM</li></a>
+                <a href="#"><li>TWITTER</li></a>
+            </ul>
+       </div>
+    </div>
+
+
+{% endblock %}
