@@ -103,6 +103,22 @@
 
 
                 </tr>
+                 <tr>
+                        <td>
+                            {{ sysconf[5][0] }}
+                        </td>
+                        <td>
+
+                        </td>
+
+                        <td>
+                            {% for dict in sysconf[5][2].keys() %}
+                            <p>{{ dict }}  {{ sysconf[5][2].get(dict) }}</p>
+                            {% endfor %}
+                        </td>
+
+
+                </tr>
 
             </tbody>
         </table>

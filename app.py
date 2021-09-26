@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 sysconf = SINFO()
 
+
 @app.route('/')
 def index():
     return render_template('index.html', sysconf=sysconf.get_info)

@@ -2,8 +2,8 @@ import psutil
 import platform
 import cpuinfo
 import wmi
-import os
 
+import os
 
 
 
@@ -35,6 +35,9 @@ class SINFO:
 
         self.__board = wmi.WMI().Win32_BaseBoard()[0]
 
+        # usb info
+
+        self.__usb = wmi.WMI().Win32_USBHub()
 
 
     @property
@@ -43,7 +46,9 @@ class SINFO:
                 self.get_disk_info,
                 self.get_memory_info,
                 self.get_gpu_info,
-                self.get_board_info]
+                self.get_board_info,
+                self.get_usb_info
+                ]
 
     @property
     def get_processor_info(self):
@@ -106,6 +111,20 @@ class SINFO:
             'Серийный номер:': self.__board.SerialNumber
         }]
         return board
+
+
+    @property
+    def get_usb_info(self):
+        usb = ['USB устройство']
+        for usb_device in self.__usb:
+            usb.append({
+                'Name: ': usb_device.Name,
+                'DeviceID: ': usb_device.DeviceID,
+                'PNPDeviceID: ': usb_device.PNPDeviceID,
+                'Description: ': usb_device.Description,
+
+            })
+        return usb
 
     @staticmethod
     def bytesToGb(value):
